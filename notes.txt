@@ -1,0 +1,239 @@
+
+@date 2020/08/09
+
+In modern C++ you should only work with C++ Strings
+-- Don't use C-style strings i.e. char*
+
+Character Functions
+#include <cctype>
+Examples:
+isalpha() - True if letter
+islower() - True if letter is lowercase
+tolower() - returns lowercase of letter
+toupper() - returns uppercase of letter
+
+C-style strings - sequence of chars "null terminated strings"
+-contiguous in memory
+-Array of characters
+-terminated by null character '\0'
+Example: "C++ is fun" String literal
+['C','+','+',' ','i','s',' ','f','u','n','\0']
+Size=Num of chars + null = 10+1 = 11
+
+In C-style strings you can't use the assignment operator
+Use strcpy() instead
+strcpy(my_name, "george")
+
+#include <cstring>
+Functions:
+-Copying, concatentation, comparison, searching, and more
+char str[80];
+strcpy(str, "Hello ");
+strcat(str, "there ");
+strlen(str); // return # of chars before null char called "size_t"
+Hint: use "size_t" because it will always work regardless of the system
+
+#include <cstdlib>
+Convert c-style strings to
+-Integer
+-float
+-long
+
+C++ Strings - #include <string>
+-std namespace
+-contiguous in memory
+-dynamic size
+-works with input and output streams
+-lots of useful member functions
+-familiar operators can be used +,=,<,>,...
+-Easeily convereted to c-style strings if necessary
+-Safer
+
+Common functions:
+length()
+substr()
+erase()
+clear()
+find()
+
+string::npos // useful in combination with find()
+size_t position = s1.find(word);
+if(position != string::npos)
+    ..do something...
+
+@date 2020/08/05
+
+the conditional operator "?:" is a ternary operator
+
+The 3 basic building blocks of a program:
+-sequence
+-selection
+-iteration
+
+Range-based for loop - Added in C++11
+for (var_type var_name: sequence or collection)
+    statement; // can use var_name
+
+auto keyword asks the compiler to figure out the type
+int scores [] {100,90,80};
+for (auto score: scores)
+    cout << score << endl;
+
+@date 2020/08/03
+
+Arithmetic order
+PEMDAS
+Parentheses, Exponent, Multiplication, Division, Addition, Subtraction
+
+Increment and decrement operators
+Prefix ++num - happens before the operand
+postfix num++ - happens after the operand
+
+Example: Pre increment
+result = ++counter;
+means
+counter = counter+1;
+result = counter;
+
+Example: Post increment
+result = counter++;
+means:
+result = counter;
+counter = counter+1;
+
+result = ++counter +10;
+means
+counter = counter+1;
+result = counter +10;
+
+result = counter++ + 10;
+means
+result = counter + 10;
+counter = counter+1;
+
+Higher vs. lower types:
+long double > double > float > unsigned long > long > unsigned int > int
+short and char types are always converted to int
+Promotion: double + int --> int is promoted to double before '+'
+
+Demotion:
+int num {0};
+num = 100.2 --> 100.2 is demoted to 100 befor assignment
+
+cout << (num1 == num2) << endl; --> displays 1 or 0
+std:boolalpha
+cout << (num1 == num2) << endl; --> displays True or False
+std::noboolalpha
+
+Relational Operators
+C++20 "Three way comparison"
+<=>
+Evaluate to 0 if equal
+Evaluate to < than 0 if the lhs > rhs
+Evaluate to > than 0 if the lhs < rhs
+
+Logical Operators precedence
+not '!' is higher than and '&&'
+and '&&' is higher than or '||'
+
+Operator precedence:
+[] -> . ()
+++ -- not -(unary) *(de-ref) & sizeof (Associativity: Right to left)
+* / %
++ -
+<< >>
+< <= > >=
+== !=
+&
+^
+|
+&&
+||
+= op= ?: (Associativity: Right to left)
+
+@date 2020/07/31
+
+Vectors
+#include <vector> or namespace std
+-Container in C++ STL
+-Very efficient
+-can provide Bounds checking functions
+-elements are the same type
+-elements intialized to zero
+
+Accessing vector elements
+vector_name.at(element_index) // provides bounds checking
+
+vector_name.push_back(element) // grow and add to the end
+
+2D vectors
+vector <vector<element_type>> vector_name
+vector_name.at(row_index).at(col_index) // provides bounds checking
+
+@date 2020/07/30
+
+In C++14 you can use tick marks to split up big numbers
+7600000000 -> 7'600'000'000
+
+using the list intializing will catch errors like possible overflows
+
+Don't use defined constants in Modern C++
+Yes - const double pi {3.1415926}
+no - #define pi 3.1415926
+
+@date 2020/07/27
+
+Identifiers are created by programmers
+Examples: std::endl
+"::" scope operator
+Preprocessor directives start with "#"
+Namespaces are used to help with naming conflicts
+
+@date 2020/07/25
+
+Indexes:
+https://www.tiobe.com/tiobe-index/
+https://pypl.github.io/PYPL.html
+https://spectrum.ieee.org/at-work/innovation/the-2018-top-programming-languages
+
+Installing C++ Compilers:
+> Windows
+--Download MinGW-w64 (mingw-w64.org)
+    -- MingW-W64-builds		Rolling
+--CodeLite IDE: > codelite.org
+    1. Help --> Run the setup wizard
+
+> Web IDE
+--cpp.sh (C++ shell)
+--webcompiler.cloudapp.net
+
+Overview
+--Structure
+--Variables and constants
+--Arrays and vectors
+--Strings in C++
+--Expressions, Statements and Opertors
+--Statements and Operators
+--Determining control flow
+--Functions
+--Pointers and References
+--OOP -- Classes and Objects
+--Operator Overloading
+--Inheritance
+--Polymorphism
+--Smart Pointers
+--The Standard Template Library (STL)
+--I/O Streams
+--Exception Handling
+
+"Polymorphism allows your program to determine its behavior at runtime
+and helps you think in the general."
+
+Linker Errors:
+--Linker is having trouble linking all the objects together to create the executable
+    --Usually it is missing library or object file
+
+
+
+
+
