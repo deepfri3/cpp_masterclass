@@ -21,15 +21,19 @@ int main() {
     cout << "=====================================" << endl;
     cout << "char min: " << CHAR_MIN << endl;
     cout << "char max: " << CHAR_MAX << endl;
+    cout << "unsigned char max: " << UCHAR_MAX << endl;
     cout << "short min: " << SHRT_MIN << endl;
     cout << "short max: " << SHRT_MAX << endl;
+    cout << "unsigned short max: " << USHRT_MAX << endl;
     cout << "integer min: " << INT_MIN << endl;
     cout << "integer max: " << INT_MAX << endl;
     cout << "unsigned integer max: " << UINT_MAX << endl;
     cout << "long min: " << LONG_MIN << endl;
     cout << "long max: " << LONG_MAX << endl;
+    cout << "unsigned long max: " << ULONG_MAX << endl;
     cout << "long long min: " << LONG_LONG_MIN << endl;
     cout << "long long max: " << LONG_LONG_MAX << endl;
+    cout << "unsigned long long max: " << ULONG_LONG_MAX << endl;
 
     return 0;
 }
