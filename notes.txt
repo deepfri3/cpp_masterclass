@@ -1,9 +1,157 @@
 
+//////////////////////////////////
+/// Constructor and Destructor ///
+//////////////////////////////////
+
+Constructor initialization lists
+-More efficient because you assign the value when its created
+Player::Player()
+    : name {"None"}, health{0}, xp{0} {
+
+    // statements
+}
+
+Player::Player(std::string name_val)
+    : name {name_val}, health{0}, xp{0} {
+
+    // statements
+}
+
+Delegating Constructors
+-Can call another constructor in the initialization list
+
+Player::Player(std::string name_val, int health_val, int xp_val)
+    : name {name_val}, health{health_val}, xp{xp_val} {
+    // statements
+}
+
+Player::Player()
+    : Player {"None",0, 0} {
+    // statements
+}
+
+Player::Player(std::string name_val)
+    : Player {name_val, ,0 , 0} {
+    // statements
+}
+
+Copy Constructor
+-When using raw pointers it is good practice to have a user defined constructor
+that does a deep copy.
+Type::Type(int d) {
+    data = new int;
+    *data = d;
+}
+Type::Type(const Type &source) : Type(*source.data) {}
+
+Move Constructor
+-Introduced by c++11 to move objects instead of copying them.
+-Recommended when you have raw pointers
+-"Copy elision" - C++ may optimize copying away completely (RVO-Return Value
+optimization)
+Type::Type(Type &&source) noexcept
+    : data{source.data} {
+    source.data = nullptr;
+    cout << "Move constructor - moving resource: " << *data << endl;
+}
+"Steals" the data and nulls out the source ptr.
+
+r-value references use "&&"
+int x {100}
+int &l_ref = x;
+l_ref = 10;
+int &&r_ref = 200;
+r_ref = 300;
+int &&x_ref = x; // ERROR - x is an l-value
+
 
 ///////////////////////////
 /// Classes and Objects ///
 ///////////////////////////
 
+Include Guards
+-Preprocessor guarantees that the include file will only be looked at once
+#ifndef _ACCOUNT_H_
+#define _ACCOUNT_H_
+// Account class declaration
+#endif
+- OR -
+#pragma once
+
+Public vs. private vs. protected
+-public: accessible everywhere
+-private: accessible only by members or friends of the class
+-protected: used with inheritance
+
+Encapsulation:
+-Objects contain data AND operations that work on that data
+-Abstract Data Type (ADT)
+
+Information hiding:
+-Implementation-specific logic can be hidden
+-easier to test, debug, maintain, and extend
+
+Reusability:
+-Easier to reuse classes in other applications
+-Already tested
+
+Inheritance
+-Create new classes in term of existing classes
+-Enables reusability
+-Polymorphic classes
+
+const correctness
+-Any getter in your class should be const
+void get_name() const {
+    return name;
+}
+
+Static class members
+-Useful for counting how many class objects exist
+class Player {
+    private:
+        static int num_players;
+    public:
+        Player() {
+            ++num_players;
+        }
+        ~Player() {
+            --num_players;
+        }
+        static int get_num_players() const {
+            return num_players;
+        }
+}
+
+Structs vs. Class
+-Use struct for passive objects with public access
+-Don't declare methods in a struct
+-Use class for active objects with private access
+-implement getters/setters as needed
+-implement member methods as needed.
+
+Friends of a class
+-Friendship must be declared explicitly
+-Friendship is not symmetric
+-Friendship is not inherited or transitive
+
+non-member function
+class Player {
+    friend void display_player(Player &p);
+}
+
+void display_player(Player &p) {
+    p.name;
+    p.xp;
+    p.health;
+    //no getters needed
+}
+
+Another class as a friend
+-This means Other_class has access to all members of class Player
+class Player {
+    friend class Other_class;
+}
 
 
 ///////////////////////////////
