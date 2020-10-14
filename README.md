@@ -1,2 +1,2 @@
 # cpp_masterclass
-Udempy C++ masterclass notes, projects, and assignments.
+Udemy C++ masterclass notes, projects, and assignments.
