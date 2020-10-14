@@ -35,7 +35,11 @@ Player::Player(std::string name_val)
     // statements
 }
 
-Copy Constructor
+Default copy constructor (shallow copy)
+-Memberwise copy only - each data member is copied from the source
+-This means pointers are copied NOT the data it points to (Shallow copy)
+
+Copy Constructor (deep copy)
 -When using raw pointers it is good practice to have a user defined constructor
 that does a deep copy.
 Type::Type(int d) {
@@ -473,6 +477,13 @@ size_t position = s1.find(word);
 if(position != string::npos)
     ..do something...
 
+Mystring::Mystring(const char *s) // String literal "Hello"
+: str{nullptr} {
+    str = new char[std::strlen(s)+1]; // string length + null
+    std::strcpy(str,s);
+}
+Mystring s1 {"Hello"};
+
 ///////////////
 /// Vectors ///
 ///////////////
@@ -554,6 +565,15 @@ Operator precedence:
 = op= ?: (Associativity: Right to left)
 
 the conditional operator "?:" is a ternary operator
+
+Operator Overloading
+-Using traditional operators such as +,=,*, etc. with user defined types
+-Allows user defined types to behave similar to built-in types
+-Can make code more readable and writable.
+-Not done automatically except for the '=' operator. They must be explicitly
+defined
+-using operator overloading is like "syntatic sugar"
+-Operators that cant be overloaded - '::',':?','.*','.',sizeof
 
 //////////////
 /// Basics ///
